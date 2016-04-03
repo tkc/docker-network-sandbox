@@ -1,14 +1,31 @@
+laravel:
+  image: tkcdocker/php7-laravel-mongo
+  container_name: laravel
+  ports:
+    - "8000:80"
+  volumes:
+    - ./Code/laravel:/var/www
+    - ./settings-laravel/nginx:/etc/nginx/sites-available
+  links:
+    - mysql1
+    - mysql2
+    - mysql3
+    - redis1
+  privileged: true
+
 web1:
   image: tkcdocker/php7-laravel-mongo
   container_name: web1
   ports:
     - "8001:80"
   volumes:
-    - ./settings/nginx:/etc/nginx/sites-available
+    - ./Code/web1:/var/www
+    - ./settings-static/nginx:/etc/nginx/sites-available
   links:
     - mysql1
-#  extra_hosts:
-#    - "test.jp:192.168.99.100"
+    - mysql2
+    - mysql3
+    - redis1
   privileged: true
 
 web2:
@@ -17,11 +34,13 @@ web2:
   ports:
     - "8002:80"
   volumes:
-    - ./settings/nginx:/etc/nginx/sites-available
+    - ./Code/web2:/var/www
+#    - ./settings-static/nginx:/etc/nginx/sites-available
   links:
+    - mysql1
     - mysql2
-#  extra_hosts:
-#    - "test.jp:192.168.99.100"
+    - mysql3
+    - redis1
   privileged: true
 
 web3:
@@ -30,11 +49,13 @@ web3:
   ports:
     - "8003:80"
   volumes:
-    - ./settings/nginx:/etc/nginx/sites-available
+    - ./Code/web3:/var/www
+#    - ./settings-static/nginx:/etc/nginx/sites-available
   links:
-    - mysql3
-#  extra_hosts:
-#    - "test.jp:192.168.99.100"
+     - mysql1
+     - mysql2
+     - mysql3
+     - redis1
   privileged: true
 
 mysql1:
@@ -82,7 +103,7 @@ redis1:
   ports:
     - "6380:6379"
   volumes_from:
-    - data-redis
+    - data-redis1
   restart: always
   privileged: true
 
