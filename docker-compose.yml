@@ -4,9 +4,11 @@ web1:
   ports:
     - "8001:80"
   volumes:
+    - ./Code/web1:/var/www
     - ./settings/nginx:/etc/nginx/sites-available
   links:
     - mysql1
+    - mysql2
 #  extra_hosts:
 #    - "test.jp:192.168.99.100"
   privileged: true
@@ -17,6 +19,7 @@ web2:
   ports:
     - "8002:80"
   volumes:
+    - ./Code/web2:/var/www
     - ./settings/nginx:/etc/nginx/sites-available
   links:
     - mysql2
@@ -30,6 +33,7 @@ web3:
   ports:
     - "8003:80"
   volumes:
+    - ./Code/web3:/var/www
     - ./settings/nginx:/etc/nginx/sites-available
   links:
     - mysql3
@@ -82,7 +86,7 @@ redis1:
   ports:
     - "6380:6379"
   volumes_from:
-    - data-redis
+    - data-redis1
   restart: always
   privileged: true
 
