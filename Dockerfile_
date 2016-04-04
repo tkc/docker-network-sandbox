@@ -2,14 +2,21 @@ FROM tkcdocker/laravel-mongo
 MAINTAINER tkc <info@onga.jp>
 
 RUN \
-    yum -y install epel-release
-wget http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
-sudo rpm -Uvh remi-release-6*.rpm
-sudo yum -y install  --enablerepo=remi --enablerepo=remi-php70 php
+    apt-get install python-software-properties\
+    add-apt-repository ppa:ondrej/php\
+    sudo apt-get purge php5\
+    sudo apt-get update\
+    sudo apt-get install php\
+    apt-get --purge autoremove \
+    apt-get install php7.0-fpm php7.0-mysql php7.0-curl php7.0-gd php7.0-json php7.0-mcrypt php7.0-opcache php7.0-xml php7.0-readline php7.0-cli
+    apt-get install redis-server\
+    apt-get install php7-redis\
+    apt-get install rpm\
 
 RUN \
     php --version\
     service php7.0-fpm start
+
 
 #php70-runtime-1.0-1.el6.remi.x86_64
 #php70-php-common-7.0.4-1.el6.remi.x86_64
@@ -29,7 +36,4 @@ RUN \
 #php70-php-process-7.0.4-1.el6.remi.x86_64
 #php70-php-pecl-igbinary-1.2.2-0.1.20151217git2b7c703.el6.remi.x86_64
 
-# mkdir /etc/nginx/sites-enabled
-# cd /etc/nginx/sites-enabled/
-# ln -s /etc/nginx/sites-available/default default
 

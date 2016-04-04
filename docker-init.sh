@@ -18,9 +18,7 @@ docker exec web1 env >> ./Code/web1/.env
 docker exec web2 env >> ./Code/web2/.env
 docker exec web3 env >> ./Code/web3/.env
 
-#docker exec web1 composer dumpautoload
-#docker exec web2 composer dumpautoload
-#docker exec web3 composer dumpautoload
+docker exec web0 service php7.0-fpm start
 
 function ip() {
     docker-machine ip

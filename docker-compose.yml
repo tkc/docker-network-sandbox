@@ -1,11 +1,12 @@
 web0:
 #  build: .
-  image: tkcdocker/laravel-mongo-php7
+  image: bobbydvo/centos-php7
   container_name: web0
   ports:
     - "8000:80"
   volumes:
     - ./Code/web0:/var/www
+    - ./logs/web0/nginx:/var/log/nginx
     - ./settings/web0/nginx:/etc/nginx/sites-available
   links:
     - mysql1
