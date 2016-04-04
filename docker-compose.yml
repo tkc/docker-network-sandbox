@@ -1,13 +1,16 @@
 web0:
-  image: tkcdocker/laravel-mongo
+  image: murf/docker-nginx-php7
   container_name: web0
   ports:
     - "8000:80"
   volumes:
     - ./Code/web0:/var/www
-    - ./settings/web0/nginx:/etc/nginx/sites-available
+#    - ./settings/web0/nginx:/etc/nginx/sites-available
   links:
+    - mysql1
+    - mysql2
     - mysql3
+    - redis1
 #  extra_hosts:
 #    - "test.jp:192.168.99.100"
   privileged: true
@@ -24,6 +27,7 @@ web1:
     - mysql1
     - mysql2
     - mysql3
+    - redis1
 #  extra_hosts:
 #    - "test.jp:192.168.99.100"
   privileged: true
@@ -37,7 +41,10 @@ web2:
     - ./Code/web2:/var/www
     - ./settings/web2/nginx:/etc/nginx/sites-available
   links:
+    - mysql1
     - mysql2
+    - mysql3
+    - redis1
 #  extra_hosts:
 #    - "test.jp:192.168.99.100"
   privileged: true
@@ -51,7 +58,10 @@ web3:
     - ./Code/web3:/var/www
     - ./settings/web3/nginx:/etc/nginx/sites-available
   links:
+    - mysql1
+    - mysql2
     - mysql3
+    - redis1
 #  extra_hosts:
 #    - "test.jp:192.168.99.100"
   privileged: true

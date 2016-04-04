@@ -19,4 +19,14 @@ docker exec web2 env >> ./Code/web2/.env
 docker exec web3 env >> ./Code/web3/.env
 #docker exec -ti web1 bash
 
-docker exec -ti web1 bash
+function ip() {
+    docker-machine ip
+}
+
+echo "ip"
+dockerIP=`ip`
+echo $dockerIP
+echo
+
+docker exec -ti web0 bash
+#docker exec -ti web1 bash
