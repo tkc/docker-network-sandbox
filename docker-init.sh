@@ -17,7 +17,10 @@ docker exec web0 env >> ./Code/web0/.env
 docker exec web1 env >> ./Code/web1/.env
 docker exec web2 env >> ./Code/web2/.env
 docker exec web3 env >> ./Code/web3/.env
-#docker exec -ti web1 bash
+
+#docker exec web1 composer dumpautoload
+#docker exec web2 composer dumpautoload
+#docker exec web3 composer dumpautoload
 
 function ip() {
     docker-machine ip

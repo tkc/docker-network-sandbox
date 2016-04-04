@@ -1,11 +1,12 @@
 web0:
-  image: murf/docker-nginx-php7
+#  build: .
+  image: tkcdocker/laravel-mongo-php7
   container_name: web0
   ports:
     - "8000:80"
   volumes:
     - ./Code/web0:/var/www
-#    - ./settings/web0/nginx:/etc/nginx/sites-available
+    - ./settings/web0/nginx:/etc/nginx/sites-available
   links:
     - mysql1
     - mysql2
