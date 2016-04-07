@@ -31,5 +31,5 @@ dockerIP=`ip`
 echo $dockerIP
 echo
 
-docker exec -ti web0 bash
+#docker exec -ti web0 bash
 #docker exec -ti web1 bash

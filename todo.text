@@ -1,7 +1,0 @@
-nginxを動かす
-フォルダのパーミッションの変更
-
-docker exec -ti web0 bash
-sudo /etc/init.d/nginx restart
-/etc/nginx/sites-available
-
