@@ -28,8 +28,11 @@ function ip() {
 
 echo "ip"
 dockerIP=`ip`
-echo $dockerIP
+echo $dockerIP':8001'
 echo
 
+open 'http://'$dockerIP':8001'
+
+
 #docker exec -ti web0 bash
-#docker exec -ti web1 bash
+docker exec -ti web1 bash

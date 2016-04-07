@@ -5,7 +5,7 @@ web0:
     - "8000:80"
   volumes:
     - ./Code/web0:/var/www
-#    - ./logs/web0/nginx:/var/log/nginx
+    - ./logs/web0/nginx:/var/log/nginx
     - ./settings/web0/nginx:/etc/nginx/sites-available
   links:
 #    - web1
@@ -17,7 +17,7 @@ web0:
   privileged: true
 
 web1:
-  image: tkcdocker/laravel-mongo
+  image: tkcdocker/php56nginx
   container_name: web1
   ports:
     - "8001:80"
@@ -37,7 +37,7 @@ web1:
   privileged: true
 
 web2:
-  image: tkcdocker/laravel-mongo
+  image: tkcdocker/php56nginx
   container_name: web2
   ports:
     - "8002:80"
@@ -53,7 +53,7 @@ web2:
   privileged: true
 
 web3:
-  image: tkcdocker/laravel-mongo
+  image: tkcdocker/php56nginx
   container_name: web3
   ports:
     - "8003:80"
