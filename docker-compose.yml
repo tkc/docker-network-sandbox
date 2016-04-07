@@ -1,20 +1,19 @@
 web0:
-#  build: .
-  image: bobbydvo/centos-php7
+  build: .
   container_name: web0
   ports:
     - "8000:80"
   volumes:
     - ./Code/web0:/var/www
-    - ./logs/web0/nginx:/var/log/nginx
+#    - ./logs/web0/nginx:/var/log/nginx
     - ./settings/web0/nginx:/etc/nginx/sites-available
   links:
+#    - web1
+#    - web3
     - mysql1
     - mysql2
     - mysql3
     - redis1
-#  extra_hosts:
-#    - "test.jp:192.168.99.100"
   privileged: true
 
 web1:
@@ -24,14 +23,17 @@ web1:
     - "8001:80"
   volumes:
     - ./Code/web1:/var/www
+    - ./logs/web1/nginx:/var/log/nginx
     - ./settings/web1/nginx:/etc/nginx/sites-available
   links:
+    - web0
+#    - web1
+    - web2
+    - web3
     - mysql1
     - mysql2
     - mysql3
     - redis1
-#  extra_hosts:
-#    - "test.jp:192.168.99.100"
   privileged: true
 
 web2:
@@ -41,14 +43,13 @@ web2:
     - "8002:80"
   volumes:
     - ./Code/web2:/var/www
+    - ./logs/web2/nginx:/var/log/nginx
     - ./settings/web2/nginx:/etc/nginx/sites-available
   links:
     - mysql1
     - mysql2
     - mysql3
     - redis1
-#  extra_hosts:
-#    - "test.jp:192.168.99.100"
   privileged: true
 
 web3:
@@ -58,14 +59,16 @@ web3:
     - "8003:80"
   volumes:
     - ./Code/web3:/var/www
+    - ./logs/web3/nginx:/var/log/nginx
     - ./settings/web3/nginx:/etc/nginx/sites-available
   links:
+#    - web0
+#    - web1
+#    - web2
     - mysql1
     - mysql2
     - mysql3
     - redis1
-#  extra_hosts:
-#    - "test.jp:192.168.99.100"
   privileged: true
 
 mysql1:
